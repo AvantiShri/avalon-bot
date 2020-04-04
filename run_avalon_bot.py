@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import argparse
 import json 
-import ..avalonbot
+import os
+import avalonbot
 
 
 def send_email(subject, to_addresses,
@@ -27,7 +28,7 @@ def parse_config(json_config_file):
     assert "cards" in parsed_config, "Please specify a 'cards' entry"
 
     players = []
-    for player_info in parse_config["players"]:
+    for player_info in parsed_config["players"]:
         assert "email" in player_info,\
             "All player entries must have 'email'; got: "+str(player_info) 
         assert "name" in player_info,\
@@ -36,9 +37,9 @@ def parse_config(json_config_file):
                                              email=player_info["email"])) 
 
     cards = []
-    for card_type in parse_config["cards"]:
+    for card_type in parsed_config["cards"]:
         cards.append(
-         avalonbot.cards.card_type_to_cardclass[card_type]())
+         avalonbot.cards.card_type_to_class[card_type]())
 
     return players, cards
 
@@ -48,7 +49,7 @@ def json_dump(obj):
 
 
 def run_game(args):
-    players, cards = parse_config(args.json)
+    players, cards = parse_config(args.json_config_file)
     game = avalonbot.game.Game(players=players, cards=cards) 
     game.assign_cards_to_players()
 
@@ -57,33 +58,30 @@ def run_game(args):
     good_team_cards, bad_team_cards = game.prepare_info_on_teams()
 
     for player,private_info in secret_info.items():
-        contents = """Hi """+player.name""",
-Here is your avalon card assignment:
-"""+json_dumps(private_info)+"""
-
-Here is info on the cards present in this game:
-
-Cards for the good team:
-"""+json_dumps(good_team_cards)+"""
-
-Cards for the bad team:
-"""+json_dumps(bad_team_cards)+"""
-
-Descriptions of each card:
-"""+json_dumps(card_types_info)
+        contents = ("Hi "+player.name+",\n"
+                    "Here is your avalon card assignment:\n"
+                    +json_dump(private_info)+"\n"
+                    +"\nHere is info on the cards present in this game:\n"
+                    +"\nCards for the good team:\n"
+                    +json_dump(good_team_cards)+"\n"
+                    +"\nCards for the bad team:\n"
+                    +json_dump(bad_team_cards)+"\n"
+                    +"\nDescriptions of each card:\n"
+                    +json_dump(card_types_info))
         
         send_email(subject="Your Avalon Card Assignment",
                    to_addresses=[player.email],
-                   sender="avalon-bot",
-                   contents=contents) 
+                   sender="avalon-bot@stanford.edu",
+                   contents=contents,
+                   smtp_server=args.smtp_server) 
 
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser("Welcome to Avalon Bot!"
-            +" I assume python 3 and access to an smtp server for sending mail")
+            +" I assume python 3 and access to an smtp server for sending mail\n")
     parser.add_argument("--smtp_server", required=True)
     parser.add_argument("--json_config_file", required=True,
                         help="See example config")
-    args = parser.parse_args
+    args = parser.parse_args()
     run_game(args)
     

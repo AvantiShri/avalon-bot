@@ -1,0 +1,38 @@
+{
+	"players": [
+		{"name": "Player1",
+		 "email": "avanti.shrikumar@gmail.com"},
+		{"name": "Player2",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player3",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player4",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player5",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player6",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player7",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player8",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player9",
+		 "email": "avanti.shrikumar@gmail.com"},	
+		{"name": "Player10",
+		 "email": "avanti.shrikumar@gmail.com"},
+		{"name": "Player11",
+		 "email": "avanti.shrikumar@gmail.com"}
+	],
+	"cards": ["LOYAL_SERVANT_OF_ARTHUR",
+		  "LOYAL_SERVANT_OF_ARTHUR",
+		  "LOYAL_SERVANT_OF_ARTHUR",
+		  "LOYAL_SERVANT_OF_ARTHUR",
+		  "MERLIN",
+		  "PERCIVAL",
+		  "MINION_OF_MORDRED",
+		  "ASSASSIN",
+		  "MORGANA",
+		  "MORDRED",
+		  "OBERON"]
+
+}

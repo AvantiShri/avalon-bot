@@ -30,14 +30,14 @@ class Card(object):
         raise NotImplementedError()
 
     def get_card_summary(self):
-        return OrderedDict([("Card Type", self.card_type),
-                            ("Team", self.team),
+        return OrderedDict([("Card Type", str(self.card_type)),
+                            ("Team", str(self.team)),
                             ("Special abilities", self.special_abilities)])
 
 
 class LoyalServantOfArthur(Card):
 
-    def __init_(self):
+    def __init__(self):
         Card.__init__(self,
             team=Team.GOOD_GUYS,
             card_type=CardType.LOYAL_SERVANT_OF_ARTHUR,
@@ -49,7 +49,7 @@ class LoyalServantOfArthur(Card):
                 +" cards and their abilities to strategize.")
 
     
-class Merlin(object):
+class Merlin(Card):
 
     def __init__(self):
         Card.__init__(self,
@@ -72,10 +72,10 @@ class Merlin(object):
                 player.card.card_type != CardType.MORDRED):
                     bad_team_players.append(player)
         return ("You know that the following players are on the bad team: "
-                +", ".join(bad_team_players))
+                +", ".join(str(x) for x in bad_team_players))
 
 
-class Percival(object):
+class Percival(Card):
 
     def __init__(self):
         Card.__init__(self,
@@ -94,7 +94,7 @@ class Percival(object):
                 morgana_or_merlin.append(player) 
         assert len(morgana_or_merlin)==2
         return ("These two players are EITHER MORGANA OR MERLIN: "
-                +" & ".join(morgana_or_merlin))
+                +" & ".join(str(x) for x in morgana_or_merlin))
 
 
 class BadGuy(Card):
@@ -111,7 +111,7 @@ class BadGuy(Card):
                 and player.card.card_type != CardType.OBERON): 
                 bad_team_players.append(player)
         return ("You know that the following players are also on the bad team: "
-                +", ".join(bad_team_players))
+                +", ".join(str(x) for x in bad_team_players))
 
 
 class Assassin(BadGuy):
@@ -151,19 +151,30 @@ class Mordred(BadGuy):
     
     def __init__(self):
         BadGuy.__init__(self,
-            card_type=CardType.Mordred
+            card_type=CardType.MORDRED,
             special_abilities=(
              "Merlin does not know this player is on the bad team"
             +" (this is a major advantage for the bad team)."))
 
 
+class Oberon(BadGuy):
+    
+    def __init__(self):
+        BadGuy.__init__(self,
+                card_type=CardType.OBERON,
+                special_abilities = (
+      "The other players on the bad team won't know this "
+     +" player is also on the bad team (this is a disadvantage for the "
+     +" bad team)."))
+
+
 card_type_to_class = {
-    CardType.LOYAL_SERVANT_OF_ARTHUR: LoyalServantOfArthur,
-    CardType.MERLIN: Merlin,
-    CardType.PERCIVAL: Percival,
-    CardType.MINION_OF_MORDRED: MinionOfMordred,
-    CardType.ASSASSIN: Assassin,
-    CardType.MORGANA: Morgana,
-    CardType.MORDRED: Mordred,
-    CardType.OBERON: Oberon
+    "LOYAL_SERVANT_OF_ARTHUR": LoyalServantOfArthur,
+    "MERLIN": Merlin,
+    "PERCIVAL": Percival,
+    "MINION_OF_MORDRED": MinionOfMordred,
+    "ASSASSIN": Assassin,
+    "MORGANA": Morgana,
+    "MORDRED": Mordred,
+    "OBERON": Oberon
 }

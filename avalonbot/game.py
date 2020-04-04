@@ -1,13 +1,14 @@
 import random
 from collections import OrderedDict
-from cards import Team
+from .cards import Team
+from collections import Counter
 
 
 class Player(object):
 
     def __init__(self, email, name):
-        self.email
-        self.name 
+        self.email = email
+        self.name = name
 
     def assign_card(self, card):
         self.card = card
@@ -20,7 +21,9 @@ class Game(object):
 
     def __init__(self, players, cards):
         assert len(players)==len(cards),\
-               "Please specify as many cards as players!"
+               ("Please specify as many cards as players!"
+                +"\n#Players is "+str(len(players))
+                +"\n#Cards is "+str(len(cards)))
         self.players = players
         self.cards = cards 
 
@@ -35,24 +38,24 @@ class Game(object):
         secret_info = {}
         for player in self.players:
             secret_info[player] = OrderedDict([
-            ('Your card is:', player.card.card_type),
-            ('Your team is:', player.card.team),
+            ('Your card is:', str(player.card.card_type)),
+            ('Your team is:', str(player.card.team) ),
             ('Your special abilities (if any):',
              player.card.special_abilities),
-            ('Additional info you have (if any)':
-             player.card.get_additional_info_to_provide_to_player())])
+            ('Additional info you have (if any)',
+             player.card.get_additional_info_to_provide_to_player(game=self))])
         return secret_info
 
     def prepare_info_on_cards_types(self):
         card_info = OrderedDict()
         for card in self.cards:
             if card.card_type not in card_info:
-                card_info[card.card_type] = card.get_card_summary()
+                card_info[str(card.card_type)] = card.get_card_summary()
         return card_info
 
     def prepare_info_on_teams(self):
-        good_team_cards = Counter([x.card_type for x in cards if
+        good_team_cards = Counter([str(x.card_type) for x in self.cards if
                                    x.team==Team.GOOD_GUYS])
-        bad_team_cards = Counter([x.card_type for x in cards if
+        bad_team_cards = Counter([str(x.card_type) for x in self.cards if
                                    x.team==Team.BAD_GUYS])
         return good_team_cards, bad_team_cards

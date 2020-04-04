@@ -1,2 +1,2 @@
-import .cards
-import .game
+from . import cards
+from . import game
