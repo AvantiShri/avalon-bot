@@ -1,9 +1,10 @@
-from enum import Enum #Python 3 - enums
+from __future__ import division, print_function, absolute_import
 import random
 from collections import OrderedDict
 
 
-class CardType(Enum):
+#Mimicking Enums
+class CardType(object):
     LOYAL_SERVANT_OF_ARTHUR="LOYAL_SERVANT_OF_ARTHUR"
     MERLIN="MERLIN"
     PERCIVAL="PERCIVAL"
@@ -14,7 +15,8 @@ class CardType(Enum):
     OBERON="OBERON"
 
 
-class Team(Enum):
+#Mimicking Enums
+class Team(object):
     GOOD_GUYS="GOOD_GUYS"
     BAD_GUYS="BAD_GUYS"
 
@@ -30,8 +32,7 @@ class Card(object):
         raise NotImplementedError()
 
     def get_card_summary(self):
-        return OrderedDict([("Card Type", str(self.card_type)),
-                            ("Team", str(self.team)),
+        return OrderedDict([("Team", str(self.team)),
                             ("Special abilities", self.special_abilities)])
 
 
@@ -45,7 +46,7 @@ class LoyalServantOfArthur(Card):
 
     def get_additional_info_to_provide_to_player(self, game):
         return ("As a loyal servant, you don't have any additional info"
-                +" beyond what the other cards in the game are. Review those "
+                +" beyond what the other cards in the game are. Review those"
                 +" cards and their abilities to strategize.")
 
     
@@ -55,15 +56,15 @@ class Merlin(Card):
         Card.__init__(self,
             team=Team.GOOD_GUYS,
             card_type=CardType.MERLIN,
-            special_abilities=("This player will be given information on who "
+            special_abilities=("You will be given information on who "
         +"the players on the bad team are, *with the exception of"
         +" MORDRED* (if MORDRED is present in the game)."
-        +" This player will not know the specific roles of the players on the"
-        +" bad team that they are told about. If PERCIVAL is in the game, this"
-        +" player should try to figure out who PERCIVAL is and convince them "
-        +" that they are MERLIN and not MORGANA. They should not be too "
+        +" You will not know the specific roles of the players on the"
+        +" bad team you are told about. If PERCIVAL is in the game, you"
+        +" should try to figure out who PERCIVAL is and convince them "
+        +" that you are MERLIN and not MORGANA. You should not be too "
         +" obvious about being MERLIN or else the bad team will win by "
-        +" assassinating MERLIN at the end."))
+        +" assassinating you at the end."))
 
     def get_additional_info_to_provide_to_player(self, game):
         bad_team_players = []
@@ -82,9 +83,9 @@ class Percival(Card):
             team=Team.GOOD_GUYS,
             card_type=CardType.PERCIVAL,
             special_abilities=(
-             "This player will be told which two other players are "
-     +"MORGANA and MERLIN, but they won't know exactly who is who"
-     +" between the two. This player should try to figure out whom to trust."))
+             "You will be told which two other players are "
+     +"MORGANA and MERLIN, but you won't know exactly who is who."
+     +" You should try to figure out whom to trust."))
 
     def get_additional_info_to_provide_to_player(self, game):
         morgana_or_merlin = []  
@@ -110,27 +111,25 @@ class BadGuy(Card):
             if (player.card.team==Team.BAD_GUYS
                 and player.card.card_type != CardType.OBERON): 
                 bad_team_players.append(player)
-        return ("You know that the following players are also on the bad team: "
+        return ("You know that the following players are on the bad team: "
                 +", ".join(str(x) for x in bad_team_players))
 
 
 class Assassin(BadGuy):
 
     def __init__(self):
-        BadGuy.__init__(
-            self=self,
+        super(Assassin, self).__init__(
             card_type=CardType.ASSASSIN,
             special_abilities = (
-            "At the end of the game, this player will take the "
-            +" final call on who Merlin is likely to be. If they guess right,"
+            "At the end of the game, you will take the"
+            +" final call on who Merlin is likely to be. If you guess right,"
             +" the bad team wins."))
 
 
 class MinionOfMordred(BadGuy):
 
     def __init__(self):
-        BadGuy.__init__(
-            self=self, 
+        super(MinionOfMordred, self).__init__(
             card_type=CardType.MINION_OF_MORDRED,
             special_abilities="This card has no special abilities.")
 
@@ -138,33 +137,33 @@ class MinionOfMordred(BadGuy):
 class Morgana(BadGuy): 
 
     def __init__(self):
-        BadGuy.__init__(self,
+        super(Morgana, self).__init__(
             card_type=CardType.MORGANA,
             special_abilities = (
-        "PERCIVAL will be given this "
-    +"player's name along with the name of the person playing MERLIN, but"
-    +"PERCIVAL will not be told who is who. This player should try to figure"
-    +" out who PERCIVAL is and convince PERCIVAL that they are MERLIN."))
+        "PERCIVAL will be given your"
+    +" name along with the name of the person playing MERLIN, but"
+    +" PERCIVAL will not be told who is who. You should try to figure"
+    +" out who PERCIVAL is and convince PERCIVAL that you are MERLIN."))
 
 
 class Mordred(BadGuy):
     
     def __init__(self):
-        BadGuy.__init__(self,
+        super(Mordred, self).__init__(
             card_type=CardType.MORDRED,
             special_abilities=(
-             "Merlin does not know this player is on the bad team"
+             "Merlin does not know you are on the bad team"
             +" (this is a major advantage for the bad team)."))
 
 
 class Oberon(BadGuy):
     
     def __init__(self):
-        BadGuy.__init__(self,
+        super(Oberon, self).__init__(
                 card_type=CardType.OBERON,
                 special_abilities = (
-      "The other players on the bad team won't know this "
-     +" player is also on the bad team (this is a disadvantage for the "
+      "The other players on the bad team won't know that"
+     +" you are also on the bad team (this is a disadvantage for the"
      +" bad team)."))
 
 

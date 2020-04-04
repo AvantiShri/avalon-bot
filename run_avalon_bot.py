@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import division, print_function, absolute_import
 import argparse
 import json 
 import os
@@ -69,7 +70,8 @@ def run_game(args):
                     +"\nDescriptions of each card:\n"
                     +json_dump(card_types_info))
         
-        send_email(subject="Your Avalon Card Assignment",
+        send_email(subject="Your Avalon Card Assignment for "
+                           +"game: "+str(args.game_name),
                    to_addresses=[player.email],
                    sender="avalon-bot@stanford.edu",
                    contents=contents,
@@ -78,7 +80,9 @@ def run_game(args):
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser("Welcome to Avalon Bot!"
-            +" I assume python 3 and access to an smtp server for sending mail\n")
+            +" You will need access to a smtp server for sending mail\n")
+    parser.add_argument("--game_name", required=True,
+                        help="A name for the game to put in the email subject line")
     parser.add_argument("--smtp_server", required=True)
     parser.add_argument("--json_config_file", required=True,
                         help="See example config")
