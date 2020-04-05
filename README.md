@@ -51,5 +51,5 @@ My friends and I tracked this by sending messages to the group chat, and it work
 ### Player order
 Because the position of windows in zoom's gallery view can move around, we find it's best to just determine the player order alphabetically. Occasionally try reverse alphabetical order to switch things up.
 
-### Tell new players they aren't supposed to PM!
-This may not be obvious to new players. The ability to send PMs would give the "evil" team a big advantage.
+### Other
+- Decide in advance on whether or not you are going to allow sending PMs. The original game was designed to have everyone physically in the same room, so private communication wouldn't have been possible.
