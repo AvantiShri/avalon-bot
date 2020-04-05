@@ -10,7 +10,7 @@ cd avalon-bot
 
 ## Result
 Each player will get an email that looks something like this:
-![alt text](https://github.com/AvantiShri/avalon-bot/raw/master/src/ExampleEmail.png "Example Email")
+![](https://github.com/AvantiShri/avalon-bot/raw/master/ExampleEmail.png "Example Email")
 
 ## Config file format
 See example_config/avalon_config.json for an example config file. The format of the config file is:
