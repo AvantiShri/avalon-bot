@@ -1,5 +1,5 @@
 # avalon-bot
-This is a bot to assist in playing Avalon over zoom. Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player a random card assignment as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc).
+This is a bot to assist in playing Avalon online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player a random card assignment as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc).
 
 ## Usage
 ```
