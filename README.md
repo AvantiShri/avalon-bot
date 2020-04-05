@@ -53,4 +53,4 @@ Because the position of windows in zoom's gallery view can move around, we find 
 
 ### Other
 - Decide in advance on whether or not you are going to allow sending PMs. The original game was designed to have everyone physically in the same room, so private communication wouldn't have been possible.
-- I deliberately have not included information on how many people are supposed to go on each quest, because I assume that would violate copyright.
+- I deliberately have not included information on how many people are supposed to go on each quest, because I assume that would violate copyright. I wrote this bot with the assumption that someone in the group owns a copy of the game.
