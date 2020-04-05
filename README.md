@@ -39,11 +39,11 @@ See example_config/avalon_config.json for an example config file. The format of 
 
 ## Tips for playing on Zoom:
 
-### Voting on who goes on a quest
+### Non-anonymous voting on who goes on a quest
 Zoom's vote functionality is very finicky, so what my friends and I have done is have everyone enter their votes on the group chat simultaenously (someone will need to count down from three).
 
-### Voting on whether a quest succeeds
-Again, Zoom's vote functionality was very janky. What my friends and did instead was create a codeshare page (https://codeshare.io/new), and have everyone be present with their cursors poised (if players who are not on the quest have their cursors poised, that's fine too because it will help disguise who is and is not on the quest; it's also good to switch up the position of your cursor every now and then so that no one can keep track of which cursor belongs to whom). Have someone who is not on the quest count down from three, and then have the people on the quest enter their votes (yes or no) simultaneously.
+### Anonymous voting on whether a quest succeeds
+Again, Zoom's vote functionality was very janky. What my friends and did instead was create a codeshare page (https://codeshare.io/new), and have everyone be present with their cursors poised (if players who are not on the quest have their cursors poised, that's fine too because it will help disguise who is who; it's also good to switch up the position of your cursor every now and then so that no one can keep track of which cursor belongs to whom). Have someone who is not on the quest count down from three, and then have the people on the quest enter their votes (yes or no) simultaneously.
 
 ### Keeping track of the vote count and whether quests have suceeded or failed
 My friends and I tracked this by sending messages to the group chat, and it worked fine.
