@@ -7,8 +7,6 @@ I've created a Google Colab notebook that demonstrates how to run the bot. It ca
 
 ## Tips for playing on Zoom
 
-## Tips for playing on Zoom
-
 ### Voting
 
 It turns out Zoom's built-in vote functionality is a little finicky. So I recommend using other methods to do the votes. For the non-anonymous vote, having each player enter their vote in the chat worked out fine (someone should do a countdown so that the votes are entered roughly simultaneously). For the anonymous votes, there are several websites that allow you to create quick straw polls, e.g. https://www.strawpoll.me/ (you might want to visit those sites in incognito mode to be prevent them from using cookies). There are also other creative solutions, e.g. having everyone visit a [codeshare](https://codeshare.io/new) page and enter their votes by typing a single "y" or "n" character (my friends actually did this and it worked ok).
