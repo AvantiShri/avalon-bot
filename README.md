@@ -2,30 +2,28 @@
 This is a bot to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc). In other words, each player will get an email that looks something like this:
 ![](https://github.com/AvantiShri/avalon-bot/raw/master/ExampleEmail1.png "Example Email")
 
-## Running from Google Colab (recommended for non-programmers)
+## Running the bot
 I've created a Google Colab notebook that demonstrates how to run the bot. It can be accessed [here](https://colab.research.google.com/github/AvantiShri/avalon-bot/blob/master/Avalon_Bot_Playing_Avalon_Online_With_Friends_(e_g_over_Zoom).ipynb).
 
 ## Tips for playing on Zoom
 
-My friends and I played our Avalon games using these tips, and the game ran pretty smoothly, so I'm listing them here.
+## Tips for playing on Zoom
 
-### Anonymous voting on whether a quest succeeds
-Zoom's vote functionality was very janky. What my friends and did instead was create a codeshare page (https://codeshare.io/new), and have everyone be present with their cursors poised (if players who are not on the quest have their cursors poised, that's fine too because it will help disguise who is who; it's also good to switch up the position of your cursor every now and then so that no one can keep track of which cursor belongs to whom). Have someone who is not on the quest count down from three, and then have the people on the quest enter their votes (yes or no) simultaneously.
+### Voting
 
-### Non-anonymous voting on who goes on a quest
-As mentioned, Zoom's vote functionality is very finicky, so what my friends and I did is have everyone enter their votes on the group chat simultaenously (someone will need to count down from three).
+It turns out Zoom's built-in vote functionality is a little finicky. So I recommend using other methods to do the votes. For the non-anonymous vote, having each player enter their vote in the chat worked out fine (someone should do a countdown so that the votes are entered roughly simultaneously). For the anonymous votes, there are several websites that allow you to create quick straw polls, e.g. https://www.strawpoll.me/ (you might want to visit those sites in incognito mode to be prevent them from using cookies). There are also other creative solutions, e.g. having everyone visit a [codeshare](https://codeshare.io/new) page and enter their votes by typing a single "y" or "n" character (my friends actually did this and it worked ok).
 
-### Keeping track of the vote count and whether quests have suceeded or failed
+### Keeping track of past votes
 My friends and I tracked this by sending messages to the group chat, and it worked fine.
 
 ### Player order
-Because the position of windows in zoom's gallery view can move around, we find it's best to just determine the player order alphabetically. Occasionally try reverse alphabetical order to switch things up.
+Because the position of windows in zoom's gallery view can move around, we find it's best to fix the player order in advance e.g. alphabetically or reverse-alphabetically.
 
 ### Other
-- Decide in advance on whether or not you are going to allow sending PMs. The original game was designed to have everyone physically in the same room, so private communication wouldn't have been possible (except when using the "Lady of the Lake" card).
+- Decide in advance on whether or not you are going to allow sending PMs. The original game was designed to have everyone physically in the same room, so private communication wouldn't have been possible (except when using the "Lady of the Lake").
 - The rules of Avalon are available online, e.g. [here](https://hobbylark.com/card-games/How-to-Play-Avalon) 
 
-## Running from the Command Line (for people who prefer it)
+## Running the bot from the Command Line (for more tech-savvy users)
 
 This package is on pypi and can be installed with pip:
 ```
