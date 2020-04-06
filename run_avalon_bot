@@ -88,7 +88,7 @@ def run_game(json_config_file, game_name, sender, password, smtp_server):
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser("Welcome to Avalon Bot!"
-            +" You will need access to a smtp server for sending mail\n")
+            +" You will need access to a smtp server for sending mail")
     parser.add_argument("--game_name", required=True,
                         help="A name for the game to put in the email subject line")
     parser.add_argument("--smtp_server", required=True)

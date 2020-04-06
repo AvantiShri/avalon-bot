@@ -1,5 +1,5 @@
 # avalon-bot
-This is a bot to assist in playing Avalon online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc).
+This is a bot to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc).
 
 ## Usage
 ```
@@ -53,4 +53,4 @@ Because the position of windows in zoom's gallery view can move around, we find 
 
 ### Other
 - Decide in advance on whether or not you are going to allow sending PMs. The original game was designed to have everyone physically in the same room, so private communication wouldn't have been possible.
-- I deliberately have not included information on how many people are supposed to go on each quest, because I assume that would violate copyright. I wrote this bot with the assumption that someone in the group has this knowledge.
+- The rules of Avalon are available online, e.g. [here](https://hobbylark.com/card-games/How-to-Play-Avalon) 
