@@ -1,41 +1,8 @@
 # avalon-bot
-This is a bot to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc).
+This is a bot to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc). In other words, each player will get an email that looks something like this:
+![](https://github.com/AvantiShri/avalon-bot/raw/master/ExampleEmail1.png "Example Email")
 
-## Installation
-
-This package is on pypi and can be installed with pip:
-```
-pip install avalonbot
-```
-
-## Result
-Each player will get an email that looks something like this:
-![](https://github.com/AvantiShri/avalon-bot/raw/master/ExampleEmail.png "Example Email")
-
-## Config file format
-See example_config/avalon_config.json for an example config file. The format of the config file is:
-```
-{
-  "players: [
-    {"name": "Name_of_player_1",
-		 "email": "email.of@player1"},
-		{"name": "Name_of_player_2",
-		 "email": "email.of@player2"},
-    (...additional player info, separated by commas...)
-  ],
-  "cards": [
-      (This is a comma-separated list of the cards present in the game. If you have two of a particular type of card, repeat that card twice. The length of this list should be equal to the length of the "players" list. The possible cards are:)
-      "LOYAL_SERVANT_OF_ARTHUR",
-		  "MERLIN",
-		  "PERCIVAL",
-		  "MINION_OF_MORDRED",
-		  "ASSASSIN",
-		  "MORGANA",
-		  "MORDRED",
-		  "OBERON"
-  ]
-}
-```
+## Running from Google Colab (recommended for people unfamiliar with the command line)
 
 ## Tips for playing on Zoom:
 
@@ -54,3 +21,44 @@ Because the position of windows in zoom's gallery view can move around, we find 
 ### Other
 - Decide in advance on whether or not you are going to allow sending PMs. The original game was designed to have everyone physically in the same room, so private communication wouldn't have been possible.
 - The rules of Avalon are available online, e.g. [here](https://hobbylark.com/card-games/How-to-Play-Avalon) 
+
+## Running from the Command Line (for people who prefer it)
+
+This package is on pypi and can be installed with pip:
+```
+pip install avalonbot
+```
+
+The bot can then be run with:
+```
+run_avalon_bot --game_name YourGameNameHere --smtp_server specify.your.smtp.server --sender email.for.bot@example.com [--password passwordforbot] --json_config_file /path/to/json_config.json
+```
+
+### Config file format
+See example_config/avalon_config.json for an example config file. The format is:
+```
+{
+  "players: [
+    {"name": "Name_of_player_1",
+		 "email": "email.of@player1"},
+		{"name": "Name_of_player_2",
+		 "email": "email.of@player2"},
+    (...additional player info, separated by commas...)
+  ],
+  "cards": [
+      (This is a comma-separated list of the cards
+       present in the game. If you have two of a particular
+       type of card, repeat that card twice. The length of this
+       list should be equal to the length of the "players" list.
+       The possible cards are:)
+      "LOYAL_SERVANT_OF_ARTHUR",
+      "MERLIN",
+      "PERCIVAL",
+      "MINION_OF_MORDRED",
+      "ASSASSIN",
+      "MORGANA",
+      "MORDRED",
+      "OBERON"
+  ]
+}
+```
