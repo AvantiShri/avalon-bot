@@ -3,7 +3,7 @@ import random
 from collections import OrderedDict
 
 
-#Mimicking Enums
+#Mimicking Enums, but having the values be strings
 class CardType(object):
     LOYAL_SERVANT_OF_ARTHUR="LOYAL_SERVANT_OF_ARTHUR"
     MERLIN="MERLIN"
@@ -15,10 +15,10 @@ class CardType(object):
     OBERON="OBERON"
 
 
-#Mimicking Enums
+#Mimicking Enums, but having the values be strings
 class Team(object):
-    GOOD_GUYS="GOOD_GUYS"
-    BAD_GUYS="BAD_GUYS"
+    GOOD="GOOD"
+    EVIL="EVIL"
 
 
 class Card(object):
@@ -40,7 +40,7 @@ class LoyalServantOfArthur(Card):
 
     def __init__(self):
         Card.__init__(self,
-            team=Team.GOOD_GUYS,
+            team=Team.GOOD,
             card_type=CardType.LOYAL_SERVANT_OF_ARTHUR,
             special_abilities="This card has no special abilities.")
 
@@ -54,38 +54,41 @@ class Merlin(Card):
 
     def __init__(self):
         Card.__init__(self,
-            team=Team.GOOD_GUYS,
+            team=Team.GOOD,
             card_type=CardType.MERLIN,
-            special_abilities=("You will be given information on who "
-        +"the players on the bad team are, *with the exception of"
+            special_abilities=("You will be given information on who"
+        +" the players on the evil team are, *with the exception of"
         +" MORDRED* (if MORDRED is present in the game)."
         +" You will not know the specific roles of the players on the"
-        +" bad team you are told about. If PERCIVAL is in the game, you"
-        +" should try to figure out who PERCIVAL is and convince them "
-        +" that you are MERLIN and not MORGANA. You should not be too "
-        +" obvious about being MERLIN or else the bad team will win by "
+        +" evil team you are told about. If PERCIVAL is in the game, your"
+        +" identity will be made known to them - however, if"
+        +" MORGANA is also in the game, PERCIVAL will also be given"
+        +" MORGANA's name and won't be told which of the two of you"
+        +" is the real MERLIN. You should not be too"
+        +" obvious about being MERLIN or else the evil team will win by"
         +" assassinating you at the end."))
 
     def get_additional_info_to_provide_to_player(self, game):
-        bad_team_players = []
+        evil_team_players = []
         for player in game.players:
-            if (player.card.team==Team.BAD_GUYS and
+            if (player.card.team==Team.EVIL and
                 player.card.card_type != CardType.MORDRED):
-                    bad_team_players.append(player)
-        return ("You know that the following players are on the bad team: "
-                +", ".join(str(x) for x in bad_team_players))
+                    evil_team_players.append(player)
+        return ("You know that the following players are on the evil team: "
+                +", ".join(sorted(str(x) for x in evil_team_players)))
 
 
 class Percival(Card):
 
     def __init__(self):
         Card.__init__(self,
-            team=Team.GOOD_GUYS,
+            team=Team.GOOD,
             card_type=CardType.PERCIVAL,
             special_abilities=(
-             "You will be told which two other players are "
-     +"MORGANA and MERLIN, but you won't know exactly who is who."
-     +" You should try to figure out whom to trust."))
+             "You will be given the names of players who are either"
+            +" MORGANA or MERLIN, but you will not be told who is who."
+            +" Note that if MORGANA is absent from the game, you will just"
+            +" be given the name of MERLIN."))
 
     def get_additional_info_to_provide_to_player(self, game):
         morgana_or_merlin = []  
@@ -93,26 +96,27 @@ class Percival(Card):
             if (player.card.card_type==CardType.MORGANA
                 or player.card.card_type==CardType.MERLIN):
                 morgana_or_merlin.append(player) 
-        assert len(morgana_or_merlin)==2
-        return ("These two players are EITHER MORGANA OR MERLIN: "
-                +" & ".join(str(x) for x in morgana_or_merlin))
+        return ("These players are either MORGANA or MERLIN"
+                +" (if MORGANA is absent from the game, this is just"
+                +" the name of MERLIN): "
+                +" & ".join(sorted(str(x) for x in morgana_or_merlin)))
 
 
 class BadGuy(Card):
 
     def __init__(self, card_type, special_abilities):
-        Card.__init__(self, team=Team.BAD_GUYS,
+        Card.__init__(self, team=Team.EVIL,
                       card_type=card_type,
                       special_abilities=special_abilities)
 
     def get_additional_info_to_provide_to_player(self, game):
-        bad_team_players = []
+        evil_team_players = []
         for player in game.players:
-            if (player.card.team==Team.BAD_GUYS
+            if (player.card.team==Team.EVIL
                 and player.card.card_type != CardType.OBERON): 
-                bad_team_players.append(player)
-        return ("You know that the following players are on the bad team: "
-                +", ".join(str(x) for x in bad_team_players))
+                evil_team_players.append(player)
+        return ("You know that the following players are on the evil team: "
+                +", ".join(sorted(str(x) for x in evil_team_players)))
 
 
 class Assassin(BadGuy):
@@ -122,8 +126,8 @@ class Assassin(BadGuy):
             card_type=CardType.ASSASSIN,
             special_abilities = (
             "At the end of the game, you will take the"
-            +" final call on who Merlin is likely to be. If you guess right,"
-            +" the bad team wins."))
+            +" final call on who MERLIN is likely to be. If you guess right,"
+            +" the evil team wins."))
 
 
 class MinionOfMordred(BadGuy):
@@ -152,8 +156,8 @@ class Mordred(BadGuy):
         super(Mordred, self).__init__(
             card_type=CardType.MORDRED,
             special_abilities=(
-             "Merlin does not know you are on the bad team"
-            +" (this is a major advantage for the bad team)."))
+             "MERLIN does not know you are on the evil team"
+            +" (this is a major advantage for the evil team)."))
 
 
 class Oberon(BadGuy):
@@ -162,9 +166,15 @@ class Oberon(BadGuy):
         super(Oberon, self).__init__(
                 card_type=CardType.OBERON,
                 special_abilities = (
-      "The other players on the bad team won't know that"
-     +" you are also on the bad team (this is a disadvantage for the"
-     +" bad team)."))
+      "The other players on the evil team won't know that"
+     +" you are also on the evil team, and similarly, you don't"
+     +" know who the other players on the evil team are (this is a"
+     +" disadvantage for the evil team)."))
+
+    def get_additional_info_to_provide_to_player(self, game):
+        return ("None - unlike all the other players on the evil team,"
+                +" you don't have any information about who is on the"
+                +" evil team!")
 
 
 card_type_to_class = {

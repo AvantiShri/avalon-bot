@@ -56,7 +56,7 @@ class Game(object):
 
     def prepare_info_on_teams(self):
         good_team_cards = Counter([str(x.card_type) for x in self.cards if
-                                   x.team==Team.GOOD_GUYS])
+                                   x.team==Team.GOOD])
         bad_team_cards = Counter([str(x.card_type) for x in self.cards if
-                                   x.team==Team.BAD_GUYS])
+                                   x.team==Team.EVIL])
         return good_team_cards, bad_team_cards

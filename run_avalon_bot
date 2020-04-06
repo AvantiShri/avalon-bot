@@ -8,6 +8,7 @@ import avalonbot
 
 def send_email(subject, to_addresses,
                sender, #eg: "avutils-mail-sender@stanford.edu",
+               password,
                smtp_server, #eg: "smtp.stanford.edu",
                contents=""):
     from email.mime.text import MIMEText
@@ -17,8 +18,14 @@ def send_email(subject, to_addresses,
     msg['From'] = sender
     msg['To'] = ",".join(to_addresses)
 
-    s = smtplib.SMTP(smtp_server)
+    if (":" in smtp_server):
+        smtp_server, port = smtp_server.split(":")
+        s = smtplib.SMTP(smtp_server, port=int(port))
+    else:
+        s = smtplib.SMTP(smtp_server)
     s.starttls();
+    if (password is not None):
+        s.login(sender, password)
     s.sendmail(sender, to_addresses, msg.as_string())
     s.quit()
 
@@ -49,7 +56,7 @@ def json_dump(obj):
     return json.dumps(obj, indent=4, separators=(',', ': '))
 
 
-def run_game(args):
+def run_game(json_config_file, game_name, sender, password, smtp_server):
     players, cards = parse_config(args.json_config_file)
     game = avalonbot.game.Game(players=players, cards=cards) 
     game.assign_cards_to_players()
@@ -73,7 +80,8 @@ def run_game(args):
         send_email(subject="Your Avalon Card Assignment for "
                            +"game: "+str(args.game_name),
                    to_addresses=[player.email],
-                   sender="avalon-bot@stanford.edu",
+                   sender=args.sender,
+                   password=args.password,
                    contents=contents,
                    smtp_server=args.smtp_server) 
 
@@ -84,8 +92,11 @@ if __name__=="__main__":
     parser.add_argument("--game_name", required=True,
                         help="A name for the game to put in the email subject line")
     parser.add_argument("--smtp_server", required=True)
+    parser.add_argument("--sender", required=True)
+    parser.add_argument("--password", required=False, default=None)
     parser.add_argument("--json_config_file", required=True,
                         help="See example config")
     args = parser.parse_args()
-    run_game(args)
+    print(vars(args))
+    run_game(**vars(args))
     
