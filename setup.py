@@ -6,7 +6,7 @@ config = {
     'url': 'https://github.com/AvantiShri/avalon-bot',
     'author': 'Av Shrikumar',
     'author_email': 'avanti.shrikumar@gmail.com',
-    'version': '0.1.0.0',
+    'version': '0.2.0.0',
     'packages': ['avalonbot'],
     'setup_requires': [],
     'install_requires': [], #I believe I only use the standard library
