@@ -24,15 +24,19 @@ See example_config/avalon_config.json for an example config file. The format of 
     (...additional player info, separated by commas...)
   ],
   "cards": [
-      (This is a comma-separated list of the cards present in the game. If you have two of a particular type of card, repeat that card twice. The length of this list should be equal to the length of the "players" list. The possible cards are:)
+      (This is a comma-separated list of the cards
+       present in the game. If you have two of a particular
+       type of card, repeat that card twice. The length of this
+       list should be equal to the length of the "players" list.
+       The possible cards are:)
       "LOYAL_SERVANT_OF_ARTHUR",
-		  "MERLIN",
-		  "PERCIVAL",
-		  "MINION_OF_MORDRED",
-		  "ASSASSIN",
-		  "MORGANA",
-		  "MORDRED",
-		  "OBERON"
+      "MERLIN",
+      "PERCIVAL",
+      "MINION_OF_MORDRED",
+      "ASSASSIN",
+      "MORGANA",
+      "MORDRED",
+      "OBERON"
   ]
 }
 ```
