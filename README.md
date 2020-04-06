@@ -1,11 +1,11 @@
 # avalon-bot
 This is a bot to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc).
 
-## Usage
+## Installation
+
+This package is on pypi and can be installed with pip:
 ```
-git clone https://github.com/AvantiShri/avalon-bot
-cd avalon-bot
-./run_avalon_bot.py --game_name NameOfTheGame --smtp_server <smtp server> --json_config_file /path/to/game/config/file.json
+pip install avalonbot
 ```
 
 ## Result

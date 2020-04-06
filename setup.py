@@ -3,7 +3,9 @@ from setuptools import setup
 config = {
     'include_package_data': True,
     'description': 'Bot for doing initial avalon card assignments',
-    'download_url': 'https://github.com/AvantiShri/avalon-bot',
+    'url': 'https://github.com/AvantiShri/avalon-bot',
+    'author': 'Av Shrikumar',
+    'author_email': 'avanti.shrikumar@gmail.com',
     'version': '0.1.0.0',
     'packages': ['avalonbot'],
     'setup_requires': [],
