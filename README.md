@@ -2,7 +2,8 @@
 This is a bot to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc). In other words, each player will get an email that looks something like this:
 ![](https://github.com/AvantiShri/avalon-bot/raw/master/ExampleEmail1.png "Example Email")
 
-## Running from Google Colab (recommended for people unfamiliar with the command line)
+## Running from Google Colab (recommended for non-programmers)
+I've created a Google Colab notebook that demonstrates how to run the bot. It can be accessed [here](https://colab.research.google.com/github/AvantiShri/avalon-bot/blob/master/Avalon_Bot_Playing_Avalon_Online_With_Friends_(e_g_over_Zoom).ipynb).
 
 ## Tips for playing on Zoom
 
