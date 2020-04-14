@@ -3,7 +3,7 @@ This is a program to assist in playing [Avalon](https://hobbylark.com/card-games
 ![](https://github.com/AvantiShri/avalon-card-assigner/raw/master/ExampleEmail1.png "Example Email")
 
 ## Running the code
-I've created a Google Colab notebook that demonstrates how to run the program. It can be accessed [here](https://colab.research.google.com/github/AvantiShri/avalon-card-assigner/blob/master/Avalon_Bot_Playing_Avalon_Online_With_Friends_(e_g_over_Zoom).ipynb).
+I've created a Google Colab notebook that demonstrates how to run the program. It can be accessed [here](https://colab.research.google.com/github/AvantiShri/avalon-card-assigner/blob/master/Avalon_Card_Assigner.ipynb).
 
 ## Tips for playing on Zoom
 
