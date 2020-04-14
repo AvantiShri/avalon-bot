@@ -1,9 +1,9 @@
-# avalon-bot
-This is a bot to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this bot will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc). In other words, each player will get an email that looks something like this:
-![](https://github.com/AvantiShri/avalon-bot/raw/master/ExampleEmail1.png "Example Email")
+# avalon-card-assigner
+This is a script to assist in playing [Avalon](https://hobbylark.com/card-games/How-to-Play-Avalon) online (e.g. over zoom). Given a configuration specifying the players, their emails, and the cards in the game, this script will email each player their (randomly chosen) card, as well as additional privileged information appropriate to the player (e.g. it will tell the PERCIVAL player which two other players are either MORGANA or MERLIN, etc). In other words, each player will get an email that looks something like this:
+![](https://github.com/AvantiShri/avalon-card-assigner/raw/master/ExampleEmail1.png "Example Email")
 
-## Running the bot
-I've created a Google Colab notebook that demonstrates how to run the bot. It can be accessed [here](https://colab.research.google.com/github/AvantiShri/avalon-bot/blob/master/Avalon_Bot_Playing_Avalon_Online_With_Friends_(e_g_over_Zoom).ipynb).
+## Running the code
+I've created a Google Colab notebook that demonstrates how to run the script. It can be accessed [here](https://colab.research.google.com/github/AvantiShri/avalon-card-assigner/blob/master/Avalon_Bot_Playing_Avalon_Online_With_Friends_(e_g_over_Zoom).ipynb).
 
 ## Tips for playing on Zoom
 
@@ -21,14 +21,14 @@ Because the position of windows in zoom's gallery view can move around, we find 
 - Decide in advance on whether or not you are going to allow sending PMs. The original game was designed to have everyone physically in the same room, so private communication wouldn't have been possible (except when using the "Lady of the Lake").
 - The rules of Avalon are available online, e.g. [here](https://hobbylark.com/card-games/How-to-Play-Avalon) 
 
-## Running the bot from the Command Line (for more tech-savvy users)
+## Running the script from the Command Line (for more tech-savvy users)
 
 This package is on pypi and can be installed with pip:
 ```
 pip install avalonbot
 ```
 
-The bot can then be run with:
+The script can then be run with:
 ```
 run_avalon_bot --game_name YourGameNameHere --smtp_server specify.your.smtp.server --sender email.for.bot@example.com [--password passwordforbot] --json_config_file /path/to/json_config.json
 ```
